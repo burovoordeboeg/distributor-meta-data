@@ -18,6 +18,7 @@ class BlockMeta extends AbstractMeta {
     /**
      * Main function. Updates new posts to contain the correct post IDs by replacing the origin post_id's with the destination post_id's in the post_content of the destination post.
      *
+     *
      * @param  int $new_post_id      The newly created post ID.
      * @param  int $original_post_id The original post ID.
      * @param  array $args           Not used (The arguments passed into wp_insert_post.)
@@ -78,7 +79,7 @@ class BlockMeta extends AbstractMeta {
                         $replace = '"' . $destination_post_id . '"';
                     }
 
-                    // Replace the origin attachment post_id with the destination post_id
+                    // Replace the origin value with the destination value
                     $new_post_content = str_replace( $search, $replace, $new_post_content );
                 }
             } 
