@@ -1,7 +1,12 @@
 <?php
 namespace BvdB\Distributor\InternalConnections;
 
-class BlockMeta extends CustomFields {
+class BlockMeta extends AbstractMeta {
+
+    /**
+     * Cached array of found post_id's in Block meta data (the_content).
+     */
+    var $post_ids;
 
     /**
      * Add actions
@@ -100,7 +105,7 @@ class BlockMeta extends CustomFields {
     public function get_post_ids_from_blocks( $post_content ) {
 
         // If this is already called, then return this "cached" value
-        if( $this->post_ids ) {
+        if( $this->post_ids && ! empty( $this->post_ids ) ) {
             return $this->post_ids;
         }
     

@@ -5,8 +5,7 @@ class Config {
 
     public function register_hooks() {
 
-        add_action( 'plugin_loaded', [ $this, 'configure_environment'] );
-
+        add_action( 'plugin_loaded',      [ $this, 'configure_environment'] );
         add_filter( 'option_dt_settings', [ $this, 'dt_settings'] );
         
         /**

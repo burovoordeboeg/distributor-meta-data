@@ -13,7 +13,11 @@
 
 namespace BvdB\Distributor;
 
-// This will add the `ray()` function
+if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+    return;
+}
+
+// Autoload all the needed classes
 if ( ! class_exists(Setup::class) && is_file( __DIR__ . '/vendor/autoload.php' ) ) {
     require_once __DIR__ . '/vendor/autoload.php';
 }
@@ -21,4 +25,6 @@ if ( ! class_exists(Setup::class) && is_file( __DIR__ . '/vendor/autoload.php' )
 /**
  * Distribution: Setup content distribtion logica
  */
-( new Setup() )->register_hooks();
+add_action( 'plugins_loaded', function(){
+    ( new Setup() )->register_hooks();
+});

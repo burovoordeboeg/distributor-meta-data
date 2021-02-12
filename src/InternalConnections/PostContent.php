@@ -1,7 +1,7 @@
 <?php
 namespace BvdB\Distributor\InternalConnections;
 
-class Content {
+class PostContent {
 
 	public function register_hooks() {
 		add_filter( 'dt_push_post_args', [ $this, 'dt_push_post_args' ], 4, 10  );
