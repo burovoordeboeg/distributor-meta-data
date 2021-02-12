@@ -69,13 +69,13 @@ class BlockMeta extends AbstractMeta {
                      */
 
                     if( is_int( $post_id ) ) {
-                        // Search for "image: 3455,"
+                        // Search for "image: 3455," (with quotes)
                         $search = '"'. $field_data['key'] .'": '. $post_id . ',' ;
                         $replace = '"'. $field_data['key'] .'": '. $destination_post_id . ',' ;
                     } else {
-                        // Search for "3455"
-                        $search  = (string) '"' . $post_id . '"';
-                        $replace = (string) '"' . $destination_post_id . '"';
+                        // Search for "3455" (with quotes)
+                        $search  = '"' . $post_id . '"';
+                        $replace = '"' . $destination_post_id . '"';
                     }
 
                     // Replace the origin attachment post_id with the destination post_id
