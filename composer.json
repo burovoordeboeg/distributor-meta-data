@@ -1,5 +1,5 @@
 {
-    "name": "burovoordeboeg/distributor-custom-fields",
+    "name": "burovoordeboeg/distributor-meta-data",
     "type": "wordpress-plugin",
     "description": "Push and replace related post_id's in meta data and Gutenberg content blocks.",
     "license": "MIT",
