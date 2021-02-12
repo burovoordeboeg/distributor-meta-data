@@ -1,0 +1,20 @@
+{
+    "name": "burovoordeboeg/distributor-custom-fields",
+    "type": "wordpress-plugin",
+    "description": "Push and replace related post_id's in meta data and Gutenberg content blocks.",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Buro voor de Boeg",
+        "email": "info@burovoordeboeg.nl"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "BvdB\\Distributor\\": "src/"
+      }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+  }
+  
