@@ -69,11 +69,11 @@ class BlockMeta extends AbstractMeta {
                      */
 
                     if( is_int( $post_id ) ) {
-                        // Search for "image: 3455," (with quotes)
+                        // Search for e.g. "image: 3455," (with quotes)
                         $search = '"'. $field_data['key'] .'": '. $post_id . ',' ;
                         $replace = '"'. $field_data['key'] .'": '. $destination_post_id . ',' ;
                     } else {
-                        // Search for "3455" (with quotes)
+                        // Search for e.g. "3455" (with quotes)
                         $search  = '"' . $post_id . '"';
                         $replace = '"' . $destination_post_id . '"';
                     }
@@ -112,7 +112,7 @@ class BlockMeta extends AbstractMeta {
         $flat_post_ids = [];
 
         // Define the fields with an image post id which need to be distributed
-        $meta_keys = apply_filters( 'distribute_block_field_keys', [] );
+        $meta_keys = apply_filters( 'dtmd_block_field_keys', [] );
 
         foreach ( $blocks as $block ) {
 

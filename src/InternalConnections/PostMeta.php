@@ -23,7 +23,7 @@ class PostMeta extends AbstractMeta {
 		}
 
 		// All related meta fields that need to be pushed and replaced.
-		$meta_fields = apply_filters('bvdb_distributor_push_related_meta_data', [] );
+		$meta_fields = apply_filters('dtmd_push_related_meta_data', [] );
 
 		if( empty( $meta_fields ) ) {
 			return $new_post_id;
