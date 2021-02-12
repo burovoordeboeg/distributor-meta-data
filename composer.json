@@ -1,6 +1,6 @@
 {
     "name": "burovoordeboeg/distributor-meta-data",
-    "type": "wordpress-plugin",
+    "type": "library",
     "description": "Push and replace related post_id's in meta data and Gutenberg content blocks.",
     "license": "MIT",
     "authors": [
