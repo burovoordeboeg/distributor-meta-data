@@ -37,12 +37,12 @@ class BlockMeta extends AbstractMeta {
          */
         $post_ids = $this->get_post_ids_from_blocks( $post->post_content );
 
-        // If no ACF Blocks with attachments available, bail early
+        // If no ACF Blocks with post_id's found, bail early
         if( empty( $post_ids ) ) {
             return $new_post_id;
         }
         
-        // Loop over the ACF block field and replace origin image post_id's with destination image post_id's and save that temporary $new_post_content.
+        // Loop over the (ACF) Block meta data and replace origin post_id's with destination post_id's and save that temporary $new_post_content.
         $new_post_content = $post->post_content;
 
         foreach( $post_ids as $field_data ) {
@@ -98,7 +98,7 @@ class BlockMeta extends AbstractMeta {
 
 
     /**
-     * Helper : Get media attachment post_id's from Gutenberg blocks
+     * Helper : Get post_id's from Gutenberg blocks
      */
     public function get_post_ids_from_blocks( $post_content ) {
 
