@@ -58,8 +58,6 @@ class BlockMeta extends AbstractMeta {
             foreach( $post_ids as $post_id ) {
 
                 $destination_post_id = $this->create_or_get_destination_id( $post_id );
-                // ray( $destination_post_id );
-
 
                 if( ! is_null( $destination_post_id ) ) { 
 
