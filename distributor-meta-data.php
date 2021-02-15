@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Distributor Custom Fields
- * Plugin URI: https://github.com/burovoordeboeg/distributor-custom-fields
+ * Plugin Name: Distributor Meta Data
+ * Plugin URI: https://github.com/burovoordeboeg/distributor-meta-data
  * Description: Push and replace related post_id's in meta data and Gutenberg content blocks. 
  * Version: 0.1.0
  * Author: Buro voor de Boeg
