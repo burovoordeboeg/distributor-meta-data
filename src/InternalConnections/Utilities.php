@@ -135,5 +135,5 @@ class Utilities {
 	
 		return $result;
 	}
-}
+} 
 

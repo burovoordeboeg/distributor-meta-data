@@ -88,6 +88,8 @@ class BlockMeta extends AbstractMeta {
         // Update the post_content if it has changed, saves an insert when no replacements are done
         if( $post->post_content !== $new_post_content ) {
             
+            $new_post_content = \BvdB\Distributor\InternalConnections\PostContent::prepare_content_before_save( $new_post_content );
+
             $post_id = $post = wp_update_post( [
                 'ID' => $new_post_id,
                 'post_content' => $new_post_content
