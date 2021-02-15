@@ -15,12 +15,11 @@ class PostContent {
 	
 		if( is_a( $connection,  '\Distributor\InternalConnections\NetworkSiteConnection' ) ) {
 
-			// Remove filters that may alter content updates.
+			// Remove filters that may alter content updates, which prevent removal of slashes in front of newlines ("\r\n\")
 			remove_all_filters( 'content_save_pre' );
 			
+			// WP expects all data to be slashed and will unslash it in wp_post_insert()
 			$new_post_args['post_content'] = addslashes( $new_post_args['post_content'] );
-
-			// $content = str_replace( "rnrn", "\r\n\r\n", $content );
 		}
 		
 		return $new_post_args;
