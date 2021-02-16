@@ -1,11 +1,15 @@
-# Distributor Custom Fields add on
+# Distributor Custom Fields Meta Data add-on
+
+Push and replace related post that you save by their `post_id`'s in custom field. 
+Distributor itself pushes all the origin custom fields data and this add-on will search for those posts base on their ["original ID"](https://github.com/burovoordeboeg/distributor-meta-data/blob/master/src/InternalConnections/Utilities.php) in the destination site.
+When not found it [pushes](https://github.com/burovoordeboeg/distributor-meta-data/blob/master/src/InternalConnections/AbstractMeta.php#L18) the origin post to the destination site.
 
 ## Requirements
 
 A multisite that has sites linked through `Internal Connections`.
 
 ## Usage
-Define `dtmd_block_field_keys` and `dtmd_push_related_meta_data` (rename this)
+Define `dtmd_block_field_keys` and `dtmd_post_field_keys` which the custom fields that contain your "relationship" `post_id`'s or an Array of `post_id`'s.
 
 ## Need to know
 - Currently only supports Internal Connections.
@@ -13,3 +17,5 @@ Define `dtmd_block_field_keys` and `dtmd_push_related_meta_data` (rename this)
 - I have disabled the auto scalling of WordPress so that it won't create `lorem-scaled.jpg` files. 
 - I choose to run on `dt_push_post` hook, so a I know that all attachments / media have been pushed by Distributor and I don't need to do this myself.
 - Pushing a post can take some time. See my issue in Distributor https://github.com/10up/distributor/issues/719
+- I have set, but please double check, pushing all attached attachments of a post when pushed.
+- If you need to push non-image files, like mp4 or mp3, enable this in Distributor via it's filter.
