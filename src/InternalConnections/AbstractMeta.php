@@ -125,18 +125,14 @@ class AbstractMeta {
 
 		$this->connection = $connection;
 
-		if( ! $this->destination_blog_id ) {
-				$this->destination_blog_id = $connection->site->blog_id;
+		$this->destination_blog_id = $connection->site->blog_id;
 
-				// Switch to origin to get id
-				restore_current_blog();
-		}
-		
-		if ( ! $this->origin_blog_id ) {
-				$this->origin_blog_id = get_current_blog_id();
+		// Switch to origin to get that blog_id
+		restore_current_blog();
 
-				// Go back
-				switch_to_blog( $this->destination_blog_id );
-		}
+		$this->origin_blog_id = get_current_blog_id();
+
+		// Go back as we were
+		switch_to_blog( $this->destination_blog_id );
 	}
 }
