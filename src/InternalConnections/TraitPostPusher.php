@@ -5,7 +5,7 @@ use BvdB\Distributor\InternalConnections\Utilities as Utilities;
 
 trait TraitPostPusher {
 
-	var $connection;
+	var $connection = false;
 	var $origin_blog_id = false;
 	var $destination_blog_id = false;
 
@@ -16,6 +16,10 @@ trait TraitPostPusher {
 	 * @var $post_id is the origin Post ID
 	 */
 	public function create_or_get_destination_id( $post_id ) {
+
+		if( ! $this->connection ) {
+			error_log('No connection is set: First "set_site_ids"');
+		}
 
 		\switch_to_blog( $this->origin_blog_id );
 		$pt = get_post_type( $post_id );
