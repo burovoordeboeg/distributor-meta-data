@@ -3,7 +3,9 @@ namespace BvdB\Distributor\InternalConnections;
 
 use BvdB\Distributor\InternalConnections\Utilities as Utilities;
 
-class PostMeta extends AbstractMeta {
+class PostMeta {
+
+	use TraitPostPusher;
 
 	public function register_hooks() {
 		add_filter( 'dt_push_post', [ $this, 'dt_push_post' ], 4, 10  );

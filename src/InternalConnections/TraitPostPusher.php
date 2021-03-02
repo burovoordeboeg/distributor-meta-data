@@ -3,7 +3,7 @@ namespace BvdB\Distributor\InternalConnections;
 
 use BvdB\Distributor\InternalConnections\Utilities as Utilities;
 
-class AbstractMeta {
+trait TraitPostPusher {
 
 	var $connection;
 	var $origin_blog_id = false;

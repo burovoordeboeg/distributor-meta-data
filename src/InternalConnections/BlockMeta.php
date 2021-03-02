@@ -1,7 +1,9 @@
 <?php
 namespace BvdB\Distributor\InternalConnections;
 
-class BlockMeta extends AbstractMeta {
+class BlockMeta {
+
+    use TraitPostPusher;
 
     /**
      * Cached array of found post_id's in Block meta data (the_content).
@@ -37,6 +39,8 @@ class BlockMeta extends AbstractMeta {
          * Search and Replace for media post_id's within ACF Block fields.
          */
         $post_ids = $this->get_post_ids_from_blocks( $post->post_content );
+
+        ray( $post_ids);
 
         // If no ACF Blocks with post_id's found, bail early
         if( empty( $post_ids ) ) {
