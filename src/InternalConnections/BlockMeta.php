@@ -40,8 +40,6 @@ class BlockMeta {
          */
         $post_ids = $this->get_post_ids_from_blocks( $post->post_content );
 
-        ray( $post_ids);
-
         // If no ACF Blocks with post_id's found, bail early
         if( empty( $post_ids ) ) {
             return $new_post_id;
