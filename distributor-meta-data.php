@@ -3,7 +3,7 @@
  * Plugin Name: Distributor Meta Data
  * Plugin URI: https://github.com/burovoordeboeg/distributor-meta-data
  * Description: Push and replace related post_id's in meta data and Gutenberg content blocks. 
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Buro voor de Boeg
  * Author URI: https://www.burovoordeboeg.nl
  * License: MIT
