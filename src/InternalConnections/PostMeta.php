@@ -44,9 +44,6 @@ class PostMeta {
 			
 			
 			$meta_value = get_post_meta( $new_post_id, $meta_key, true );
-			// \switch_to_blog( $this->origin_blog_id );
-			// $original_meta_value = get_post_meta( $post_id, $meta_key, true);
-			// \restore_current_blog();
 
 			// Only "transform" the ID's when this meta field really exists
 			if( ! $meta_value ) {
@@ -65,11 +62,33 @@ class PostMeta {
 				// loop and find post by "original post id in this array and replace it with the destination's post id
 				$destination_post_ids = [];
 
-				foreach( $meta_value as $related_post_id ) {
+				foreach( $meta_value as $related_post ) {
+
+					/**
+					 * We have two options to handle:
+					 * 
+					 * A. We have an Array with only id's [1, 23, 44]
+					 * B. We have an multidimensional Array with and 'id' index ['id' => 1, 'instrument' => 'fluut' ]
+					 */
+
+					// Make it possible to alter this index where we are search on.
+					$id_index = \apply_filters('dtmd_post_meta_id_index', 'id' );
+
+					if( isset( $related_post[ $id_index ] ) && !empty( $related_post[ $id_index] ) ) {
+						$related_post_id = $related_post[ $id_index ]; // Option B.
+					} else {
+						$related_post_id = $related_post; // Option A.
+					}
 
 					$destination_post_id = $this->create_or_get_destination_id( $related_post_id );
 
-					$destination_post_ids[] = $destination_post_id;
+					if( isset( $related_post[ $id_index ] ) && !empty( $related_post[ $id_index ] ) ) {
+						$related_post[ $id_index ] = $destination_post_id; // Option B.
+						$destination_post_ids[] = $related_post; // Put the original multidimensional Array back with the replaced id
+					} else {
+						$destination_post_ids[] = $destination_post_id; // Option A.
+					}
+					
 				}
 
 				$new_meta_value = $destination_post_ids;
