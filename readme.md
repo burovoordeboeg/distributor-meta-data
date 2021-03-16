@@ -11,6 +11,14 @@ A multisite that has sites linked through `Internal Connections`.
 ## Usage
 Define `dtmd_block_field_keys` and `dtmd_post_field_keys` which the custom fields that contain your "relationship" `post_id`'s or an Array of `post_id`'s.
 
+### dtmd_post_field_keys
+We have two options to handle post meta fields:
+ 
+A. We have an `array` with only id's `[1, 23, 44]`.
+B. We have an multidimensional `array` with and `id` index `['id' => 1, 'instrument' => 'fluut' ]`.
+
+It's also possible to filter the `id` index via `dtmd_post_meta_id_index`
+
 ## Need to know
 - Currently only supports Internal Connections.
 - If you use ACF groups in your custom fields, please know that these are a bit tricky. Thesee values are saved in this format: `groupkey_fieldkey`. I haven't tried this yet.
