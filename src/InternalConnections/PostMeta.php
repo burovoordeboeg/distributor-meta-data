@@ -57,10 +57,9 @@ class PostMeta {
 			}
 			
 			// post meta is saved as strings, so by checking on this and trying if it's possible to cast this $post_meta to an Integer and check if it evaluates to True, then we "kind" of can say it's an single integer value.
-			if ( is_string( $meta_value ) && intval( $meta_value ) ) {
+			if ( ! is_array( $meta_value ) && is_string( $meta_value ) && intval( $meta_value ) ) {
 
 				$related_post_id = $meta_value;
-
 				$new_meta_value = $this->create_or_get_destination_id( $related_post_id );
 
 			} else if ( is_array( $meta_value ) ) {
