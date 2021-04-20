@@ -38,7 +38,7 @@ class BlockMeta {
         /**
          * Search and Replace for media post_id's within ACF Block fields.
          */
-        $post_ids = $this->get_post_ids_from_blocks( $post->post_content );
+        $post_ids = ( isset( $post->post_content ) ) ? $this->get_post_ids_from_blocks( $post->post_content ) : [];
 
         // If no ACF Blocks with post_id's found, bail early
         if( empty( $post_ids ) ) {
