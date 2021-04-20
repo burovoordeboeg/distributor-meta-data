@@ -15,9 +15,14 @@ class PostMeta {
 	 * Push related Custom Post Types posts that are related through custom meta fields.  
 	 * And replace the meta fields values with these newly pushed post_id.
 	 * 
+	 * @param  int $new_post_id      The newly created post ID.
+     * @param  int $original_post_id The original post ID.
+     * @param  array $args           Not used (The arguments passed into wp_insert_post.)
+     * @param  object $site          The distributor connection being pushed to.
+     *
 	 * @example 'som_event_conductor_id' has a single integer, which needs to be replaced with the post ID of the destination site.
 	 */
-	public function dt_push_post( $new_post_id, $post_id, $args, $connection ) {
+	public function dt_push_post( $new_post_id, $original_post_id, $args, $connection ) {
 
 		// Check if we are using the internal Multisite connection
 		if( ! is_a( $connection,  '\Distributor\InternalConnections\NetworkSiteConnection' ) ) {
@@ -42,8 +47,9 @@ class PostMeta {
 		 */
 		foreach( $meta_fields as $meta_key ) {
 			
-			
-			$meta_value = get_post_meta( $new_post_id, $meta_key, true );
+			\switch_to_blog( $this->origin_blog_id );
+			$meta_value = get_post_meta( $original_post_id, $meta_key, true );
+			\switch_to_blog( $this->destination_blog_id );
 
 			// Only "transform" the ID's when this meta field really exists
 			if( ! $meta_value ) {
