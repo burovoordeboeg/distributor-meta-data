@@ -27,5 +27,22 @@ if ( ! class_exists(Setup::class) && is_file( __DIR__ . '/vendor/autoload.php' )
  * Distribution: Setup content distribtion logica
  */
 add_action( 'plugins_loaded', function(){
-    ( new Setup() )->register_hooks();
+    
+    // Configurate some default Distributor options
+    ( new Config() )->register_hooks();
+});
+
+/**
+ * Distributor: Change content on save.
+ */
+add_action( 'save_post', function( $post_id ){
+
+    // Alter the_content while pushing posts
+    ( new InternalConnections\PostContent() )->register_hooks();
+
+    // Migrate post_ids located in (ACF) custom meta fields
+    ( new InternalConnections\PostMeta() )->register_hooks();
+
+    // Migrate post_id's Block located in Gutenberg blocks (the_content)
+    ( new InternalConnections\BlockMeta() )->register_hooks();
 });
