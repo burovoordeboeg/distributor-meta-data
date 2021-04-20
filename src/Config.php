@@ -20,6 +20,8 @@ class Config {
          * When the treshold is turned on, a filename because lorem-scaled.jpg instead of lorem.jpg. While the original filename is saved in the guid column.
          */
         add_filter( 'big_image_size_threshold', '__return_false' );
+
+        add_filter( 'duplicate_post_excludelist_filter', [ $this, 'prevent_meta_fields_duplication'] );
     }
 
     /**
@@ -49,5 +51,16 @@ class Config {
         }
 
         return $option;
+    }
+
+    /**
+     * Prevent duplicating Distributor meta fields on "duplication" via de Yoast Duplicator Post plugin
+     */
+    public function prevent_meta_fields_duplication( $excludelist ) {
+
+        $dt_meta_list = \Distributor\Utils\blacklisted_meta();
+        $excludelist = array_merge( $excludelist, $dt_meta_list );
+
+        return $excludelist;
     }
 }
