@@ -18,9 +18,10 @@ trait TraitPostPusher {
 	public function create_or_get_destination_id( $post_id ) {
 
 		if( ! $this->connection ) {
-			error_log('No connection is set: First "set_site_ids"');
+			error_log('No connection is set: First call method "$this->set_site_ids"');
 		}
 
+		// Get the post_type from the original post
 		\switch_to_blog( $this->origin_blog_id );
 		$pt = get_post_type( $post_id );
 		\switch_to_blog( $this->destination_blog_id );
