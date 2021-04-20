@@ -52,10 +52,10 @@ class PostMeta {
 			\switch_to_blog( $this->destination_blog_id );
 
 			// Only "transform" the ID's when this meta field really exists
-			if( ! $meta_value ) {
+			if( ! $meta_value || empty( $meta_value ) || is_null( $meta_value ) ) {
 				continue;
 			}
-			
+
 			// post meta is saved as strings, so by checking on this and trying if it's possible to cast this $post_meta to an Integer and check if it evaluates to True, then we "kind" of can say it's an single integer value.
 			if ( ! is_array( $meta_value ) && is_string( $meta_value ) && intval( $meta_value ) ) {
 
