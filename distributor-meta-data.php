@@ -37,6 +37,10 @@ add_action( 'plugins_loaded', function(){
  */
 add_action( 'save_post', function( $post_id ){
 
+    if ( wp_is_post_revision( $post_id ) ){ 
+        return;
+    }
+    
     // Alter the_content while pushing posts
     ( new InternalConnections\PostContent() )->register_hooks();
 
@@ -45,4 +49,4 @@ add_action( 'save_post', function( $post_id ){
 
     // Migrate post_id's Block located in Gutenberg blocks (the_content)
     ( new InternalConnections\BlockMeta() )->register_hooks();
-});
+}, 10, 1);
