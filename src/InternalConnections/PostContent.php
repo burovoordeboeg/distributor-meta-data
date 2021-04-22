@@ -17,7 +17,10 @@ class PostContent {
 
 		if( is_a( $connection,  '\Distributor\InternalConnections\NetworkSiteConnection' ) ) {
 
-			$new_post_args['post_content'] =  self::prepare_content_before_save( $new_post_args['post_content'] );
+			// Don't run this if your post doens't use Gutenberg. Because when calling 'wp_update_post' from WP-CLI will result in your code hanging...
+			if( \Distributor\Utils\is_using_gutenberg( $post ) ){
+				$new_post_args['post_content'] =  self::prepare_content_before_save( $new_post_args['post_content'] );
+			}
 		}
 		
 		return $new_post_args;
