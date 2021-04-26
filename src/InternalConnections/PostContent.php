@@ -6,8 +6,8 @@ use BvdB\Distributor\InternalConnections\Utilities as Utilities;
 class PostContent {
 
 	public function register_hooks() {
-		add_filter( 'dt_pull_post_args', [ $this, 'alter_post_content' ], 4, 10  );
-		add_filter( 'dt_push_post_args', [ $this, 'alter_post_content' ], 4, 10  );
+		Utilities::add_filter_once( 'dt_pull_post_args', [ $this, 'alter_post_content' ], 4, 10  );
+		Utilities::add_filter_once( 'dt_push_post_args', [ $this, 'alter_post_content' ], 4, 10  );
   	}
 
 	/**

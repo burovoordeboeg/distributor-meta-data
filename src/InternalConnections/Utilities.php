@@ -135,5 +135,25 @@ class Utilities {
 	
 		return $result;
 	}
+
+	/**
+	 * Use this just like `add_filter()`, and then run something that calls the filter (like `new WP_Query`, maybe). 
+	 * That's it. If the filter gets called again, your callback will not be. 
+	 * This works around the common "filter sandwich" pattern where you have to remember to call `remove_filter` again after your call.
+	 * 
+	 * @props @markjaquith https://gist.github.com/markjaquith/b752e3aa93d2421285757ada2a4869b1
+	 */
+	public static function add_filter_once( $hook, $callback, $priority = 10, $params = 1 ) {
+		add_filter( $hook, function( $first_arg ) use( $callback ) {
+			static $ran = false;
+
+			if ( $ran ) {
+				return $first_arg;
+			}
+
+			$ran = true;
+			return call_user_func_array( $callback, func_get_args() );
+		}, $priority, $params );
+	}
 } 
 
