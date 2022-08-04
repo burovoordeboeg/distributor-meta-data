@@ -6,8 +6,15 @@ use BvdB\Distributor\InternalConnections\Utilities as Utilities;
 class PostContent {
 
 	public function register_hooks() {
-		Utilities::add_filter_once( 'dt_pull_post_args', [ $this, 'alter_post_content' ], 4, 10  );
-		Utilities::add_filter_once( 'dt_push_post_args', [ $this, 'alter_post_content' ], 4, 10  );
+
+		/**
+		 * As of 1.7.0 Distributor slashes the content of an  InternalConnection themselfs
+		 * See: https://github.com/10up/distributor/pull/890
+		 */
+		if( defined( 'DT_VERSION' ) && (float)DT_VERSION <= 1.6 ) {
+			Utilities::add_filter_once( 'dt_pull_post_args', [ $this, 'alter_post_content' ], 4, 10  );
+			Utilities::add_filter_once( 'dt_push_post_args', [ $this, 'alter_post_content' ], 4, 10  );
+		}	
   	}
 
 	/**
